@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="iso-8859-1" ?>
+
+<table>
+  <base>CRM/Membershiprecord</base>
+  <class>MembershipTerm</class>
+  <name>civicrm_membershipterm</name>
+  <comment>Membership terms or periods records.</comment>
+  <add>4.4</add>
+  <log>true</log>
+
+  <field>
+    <name>id</name>
+    <type>int unsigned</type>
+    <required>true</required>
+    <comment>Unique MembershipTerm ID</comment>
+    <add>4.4</add>
+  </field>
+  <primaryKey>
+    <name>id</name>
+    <autoincrement>true</autoincrement>
+  </primaryKey>
+
+  <field>
+    <name>membership_id</name>
+    <title>Membership ID</title>
+    <type>int unsigned</type>
+    <required>true</required>
+    <comment>FK to Membership table</comment>
+    <add>1.5</add>
+  </field>
+  <foreignKey>
+    <name>membership_id</name>
+    <table>civicrm_membership</table>
+    <key>id</key>
+    <add>1.5</add>
+    <onDelete>CASCADE</onDelete>
+  </foreignKey>
+
+  <field>
+    <name>contact_id</name>
+    <uniqueName>membership_contact_id</uniqueName>
+    <type>int unsigned</type>
+    <required>true</required>
+    <title>Contact ID</title>
+    <headerPattern>/contact(.?id)?/i</headerPattern>
+    <dataPattern>/^\d+$/</dataPattern>
+    <import>true</import>
+    <comment>FK to Contact ID</comment>
+    <add>1.5</add>
+    <html>
+      <type>EntityRef</type>
+    </html>
+  </field>
+  <foreignKey>
+    <name>contact_id</name>
+    <table>civicrm_contact</table>
+    <key>id</key>
+    <add>1.5</add>
+    <onDelete>CASCADE</onDelete>
+  </foreignKey>
+
+  <field>
+    <name>contribution_id</name>
+    <title>Contribution</title>
+    <type>int unsigned</type>
+    <comment>FK to contribution table.</comment>
+    <add>2.0</add>
+  </field>
+  <foreignKey>
+    <name>contribution_id</name>
+    <table>civicrm_contribution</table>
+    <key>id</key>
+    <add>2.0</add>
+    <onDelete>CASCADE</onDelete>
+  </foreignKey>
+
+  <field>
+    <name>start_date</name>
+    <uniqueName>term_start_date</uniqueName>
+    <title>Term Start Date</title>
+    <type>date</type>
+    <import>true</import>
+    <headerPattern>/(term.)?start(s)?(.date$)?/i</headerPattern>
+    <dataPattern>/\d{4}-?\d{2}-?\d{2}/</dataPattern>
+    <comment>Beginning of an uninterrupted membership term or period.</comment>
+    <add>1.5</add>
+    <html>
+      <type>Select Date</type>
+      <formatType>activityDate</formatType>
+    </html>
+  </field>
+  <field>
+    <name>end_date</name>
+    <uniqueName>term_end_date</uniqueName>
+    <title>Term End Date</title>
+    <type>date</type>
+    <import>true</import>
+    <headerPattern>/(term.)?end(s)?(.date$)?/i</headerPattern>
+    <dataPattern>/\d{4}-?\d{2}-?\d{2}/</dataPattern>
+    <comment>End of an uninterrupted membership term or period.</comment>
+    <add>1.5</add>
+    <html>
+      <type>Select Date</type>
+      <formatType>activityDate</formatType>
+    </html>
+  </field>
+</table>
