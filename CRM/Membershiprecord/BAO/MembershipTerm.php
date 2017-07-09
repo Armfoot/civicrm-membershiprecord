@@ -101,18 +101,17 @@ SQL;
             date('Y-m-d', $receive_date_time) :
             date('Y-m-d', $start_date_time);
       $end_date = empty($dao_results->end_date)?
-            // in lifetime memberships, end_date may be null
-            NULL : $dao_results->end_date;
+          // in order to prevent NULL, add a long "lifetime" to end_date
+          date_create($start_date)->modify('+900 years')->format('Y-m-d') :
+          $dao_results->end_date;
       
       $params = array(
         'membership_id' => $dao_results->id,
         'contact_id' => $dao_results->contact_id,
         'contribution_id' => $contribution_id,
-        'start_date' => $start_date
+        'start_date' => $start_date,
+        'end_date' => $end_date
       );
-      if(!empty($end_date)) {
-        $params['end_date'] = $end_date;
-      }
 
       return CRM_Membershiprecord_BAO_MembershipTerm::create($params);
 
