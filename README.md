@@ -4,11 +4,11 @@ This extension records all terms or periods of a membership. A term is associate
 
 The table with the terms data is shown under the Memberships table of a Contact's _Memberships_ tab:
 
-![Memberships tab](/images/contact-memberships_tab.png)
+![Memberships tab](docs/images/contact-memberships_tab.png)
 
 Upon installation, all memberships are compared with their respective contributions and, for example, if a contact has 4 memberships with 2 of them renewed 5 times (in total), this leads to 9 records, as depicted below:
 
-![Memberships' terms example](/images/contact_59-membership_terms_example.png)
+![Memberships' terms example](docs/images/contact_59-membership_terms_example.png)
 
 Each record corresponds to a term where the _Start Date_ is either the beginning of a membership or a renewal of an existing one. In general, a lifetime membership may not have an _End Date_.
 
